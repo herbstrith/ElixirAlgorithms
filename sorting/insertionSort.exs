@@ -7,20 +7,20 @@ defmodule InsertionSort do
   end
 
   # the last case of the recursion
-  def crescent(outputList, _inputList = []) do
+  defp crescent(outputList, _inputList = []) do
     outputList
   end
   # the "average" case when both lists have entries on them, input list must not be empty
-  def crescent(outputList, inputList = [head|tail]) do
+  defp crescent(outputList, inputList = [head|tail]) do
     insertCrescent(head, outputList) |> crescent(tail)
   end
 
   # when the output list is empty we just return the element
-  def insertCrescent(actualElement, _outputList = []) do
+  defp insertCrescent(actualElement, _outputList = []) do
     [actualElement]
   end
   # Inserts the element in outputList
-  def insertCrescent(actualElement, outputList = [head|tail]) do
+  defp insertCrescent(actualElement, outputList = [head|tail]) do
     if (head >= actualElement) do
       [actualElement|[head|tail]]
     else
