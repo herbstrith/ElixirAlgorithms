@@ -1,12 +1,31 @@
 defmodule Heap do
+
+  def sort(list) do
+    listLength = length(list)
+    heap = buildMaxHeap(list)
+    heapSort(heap, listLength - 1, listLength - 1)
+  end
+
+  defp heapSort(list, index, listLength) do
+    if index > 0 do
+      listLength = listLength - 1
+      newList = exchange(list, index , 0)
+      heap = maxHeapify(newList, 0, listLength)
+      index = index - 1
+      heapSort(heap, index, listLength)
+    else
+      list
+    end
+  end
+
   def buildMaxHeap(list) do
     listLength =  length(list)
-    buildMaxHeap(list, div(listLength, 2) - 1, length(list))
+    buildMaxHeap(list, div(listLength, 2) - 1, listLength - 1)
   end
 
   defp buildMaxHeap(heap, index, listSize) do
     if(index >= 0) do
-      myHeap = maxHeapify(heap, index)
+      myHeap = maxHeapify(heap, index, listSize)
       index = index - 1
       buildMaxHeap(myHeap, index, listSize)
     else
@@ -14,12 +33,10 @@ defmodule Heap do
     end
   end
   # would be better if we didnt have to access values at index or know the length
-  defp maxHeapify(list, index) do
+  defp maxHeapify(list, index, listLength) do
     leftValue = Enum.at(list, left(index))
     rightValue = Enum.at(list, right(index))
     actualValue = Enum.at(list, index)
-    # we dont want to keep iterating the list to get the length
-    listLength = length(list) -1
     largest = case left(index) <= listLength and leftValue > actualValue do
       true -> left(index)
       false -> index
@@ -31,7 +48,7 @@ defmodule Heap do
 
     if largest != index do
       updatedList = exchange(list, index, largest)
-      maxHeapify(updatedList, largest)
+      maxHeapify(updatedList, largest, listLength)
     else
       list
     end
@@ -62,8 +79,9 @@ end
 defmodule Main do
   def main do
     inputList = [4, 1, 3, 2, 16, 9, 10, 14, 8, 7]
-    myHeap = Heap.buildMaxHeap(inputList)
-    IO.puts(inspect(myHeap))
+    IO.puts(inspect(inputList))
+    sortedList = Heap.sort(inputList)
+    IO.puts(inspect(sortedList))
   end
 end
 
