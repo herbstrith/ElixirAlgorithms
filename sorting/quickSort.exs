@@ -1,0 +1,47 @@
+defmodule QuickSort do
+  def sort(list = []) do
+    list
+  end
+
+  def sort([head | tail]) do
+    # get values that are bigger than head in one list and smaller in another
+    # works as the "partition" part of the algorithm
+    { left, right } = Enum.split_with(
+      tail,
+      fn(x) -> 
+        x < head
+      end)
+    #the two recursive calls where our "q" is defined by the head
+    sort(left) ++ [head | sort(right)]
+  end
+
+  def tailRecursiveSort(list = []) do
+    list
+  end
+
+  def tailRecursiveSort(list = [head | tail]) do
+    # works as the "partition" part of the algorithm
+    { left, right } = Enum.split_with(
+      list,
+      fn(x) -> 
+        x < head
+      end)
+    [smallest|rest] = tailRecursiveSort(left) ++ right
+    [smallest|tailRecursiveSort(rest)]
+  end
+end
+
+defmodule Main do
+  def main do
+    inputList = [4, 1, 3, 2, 16, 9, 10, 14, 8, 7]
+    IO.puts(inspect(inputList))
+    sortedList = QuickSort.sort(inputList)
+    IO.puts(inspect(sortedList))
+    inputList = [4, 1, 3, 2, 16, 9, 10, 14, 8, 7]
+    IO.puts(inspect(inputList))
+    sortedList = QuickSort.tailRecursiveSort(inputList)
+    IO.puts(inspect(sortedList))
+  end
+end
+
+Main.main
