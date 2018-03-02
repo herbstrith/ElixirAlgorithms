@@ -2,6 +2,10 @@ inputList = [10, 20, 31, 5, 8, 9, 7, 12 ,11]
 
 defmodule InsertionSort do
   #method call
+  def crescent(list = []) do
+    list
+  end
+  #method call
   def crescent(list) do
     crescent([hd(list)], tl(list))
   end
