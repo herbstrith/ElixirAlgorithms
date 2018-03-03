@@ -1,4 +1,4 @@
-defmodule CountSort do
+defmodule CountingSort do
 
   def sort(list, k) do
     countList = countNumbers(List.duplicate(0, k + 1), list)
@@ -42,16 +42,3 @@ defmodule CountSort do
     outputList
   end
 end
-
-
-
-defmodule Main do
-  def main do
-    inputList = [4, 1, 3, 2, 16, 9, 10, 14, 8, 7]
-    IO.puts(inspect(inputList))
-    sortedList = CountSort.sort(inputList, 16)
-    IO.puts(inspect(sortedList))
-  end
-end
-
-Main.main

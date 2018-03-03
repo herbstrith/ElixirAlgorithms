@@ -27,18 +27,7 @@ defmodule BucketSort do
       [],
       fn(i, tempList) ->
         #return sorted bucket
-        Enum.concat(InsertionSort.crescent(Enum.at(buckets, i)), tempList)
+        Enum.concat(InsertionSort.sort(Enum.at(buckets, i)), tempList)
       end)
   end
 end
-
-defmodule Main do
-  def main do
-    inputList = [4, 1, 3, 2, 16, 9, 200, 10, 14, 8, 7, 100]
-    IO.puts(inspect(inputList))
-    sortedList = BucketSort.sort(inputList, 10, 1)
-    IO.puts(inspect(sortedList))
-  end
-end
-
-Main.main

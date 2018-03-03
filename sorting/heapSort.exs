@@ -1,4 +1,4 @@
-defmodule Heap do
+defmodule HeapSort do
 
   def sort(list) do
     listLength = length(list)
@@ -75,14 +75,3 @@ defmodule Heap do
   end
 
 end
-
-defmodule Main do
-  def main do
-    inputList = [4, 1, 3, 2, 16, 9, 10, 14, 8, 7]
-    IO.puts(inspect(inputList))
-    sortedList = Heap.sort(inputList)
-    IO.puts(inspect(sortedList))
-  end
-end
-
-Main.main

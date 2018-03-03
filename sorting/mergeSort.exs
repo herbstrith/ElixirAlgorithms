@@ -2,13 +2,13 @@ inputList = [10, 20, 31, 5, 8, 9, 7, 12 ,11]
 defmodule MergeSort do
  #module call
  #it does not do in place sorting
- def mergesort(list) do
+ def sort(list) do
    listLength = length(list)
    if (listLength < 2) do
      list
    else
      {left, right} = Enum.split(list, div(listLength, 2))
-     merge(mergesort(left), mergesort(right))
+     merge(sort(left), sort(right))
    end
  end
 
@@ -29,7 +29,3 @@ defmodule MergeSort do
  end
 
 end
-
-IO.puts(inspect(inputList, charlists: :as_lists))
-outputList = MergeSort.mergesort(inputList)
-IO.puts(inspect(outputList, charlists: :as_lists))
