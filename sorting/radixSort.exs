@@ -1,4 +1,8 @@
 defmodule RadixSort do
+  @moduledoc """
+    Sorts a list of non-negative numbers
+    using radix sort algorithm
+  """
   def sort(list = []) do
     list
   end

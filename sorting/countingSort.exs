@@ -1,5 +1,8 @@
 defmodule CountingSort do
-
+  @moduledoc """
+    Sorts a list of non-negative numbers using
+    the counting sort algorithm
+  """
   def sort(list, k) do
     countList = countNumbers(List.duplicate(0, k + 1), list)
     countList = countLesserThan(countList, countList, 0, 0)

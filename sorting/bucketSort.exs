@@ -2,7 +2,7 @@
 
 defmodule BucketSort do
   @moduledoc """
-    Sorts a list with bucket sorts
+    Sorts a list of non-negative numbers with bucket sort
     Uses the InsertionSort Module
   """
   def sort(list = [], _base, _multiplier) do
