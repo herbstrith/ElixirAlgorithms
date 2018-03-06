@@ -17,6 +17,20 @@ defmodule MinMax do
     end)
   end
 
+  def getMinimumAndMaximum(_list = [head|tail]) do
+    getComparisonResult(tail, %{min: head, max: head}, fn (x, y) -> 
+      y = case x < y[:min] do
+          true -> %{y | :min => x}
+          false -> y
+      end
+      y = case x > y[:max] do
+          true -> %{y | :max => x}
+          false -> y
+      end
+      y
+    end)
+  end
+
   defp getComparisonResult(_list = [head|tail], result, comparison) do
     result = comparison.(head, result)
     getComparisonResult(tail, result, comparison)
