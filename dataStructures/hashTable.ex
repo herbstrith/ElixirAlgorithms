@@ -1,5 +1,5 @@
 defmodule HashTable do
-defstruct table: %{}, hashFunctionSelector: 0, hashFunctionParameter: 10
+defstruct table: %{}, hashFunctionSelector: :mod, hashFunctionParameter: 10
  def insert(hashTable, element) do
    hashFunction = getHashFunction(hashTable)
    %HashTable{
@@ -26,7 +26,7 @@ defstruct table: %{}, hashFunctionSelector: 0, hashFunctionParameter: 10
 
  defp getHashFunction(hashTable) do
    case hashTable.hashFunctionSelector do
-     0 -> &modHash(&1, hashTable.hashFunctionParameter)
+     :mod -> &modHash(&1, hashTable.hashFunctionParameter)
    end
  end
 
