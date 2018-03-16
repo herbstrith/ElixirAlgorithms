@@ -1,4 +1,4 @@
-defmodule QuickSort do
+defmodule Algorithms.Sorting.QuickSort do
   def sort(list = []) do
     list
   end
@@ -19,7 +19,7 @@ defmodule QuickSort do
     list
   end
 
-  def tailRecursiveSort(list = [head | tail]) do
+  def tailRecursiveSort(list = [head | _tail]) do
     # works as the "partition" part of the algorithm
     { left, right } = Enum.split_with(
       list,

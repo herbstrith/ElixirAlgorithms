@@ -1,9 +1,11 @@
-defmodule Tree do
+defmodule Algorithms.DataStructures.Tree do
   defstruct value: 0,left: nil, right: nil
 end
 
 #methods are not tail recursive unfortunately
-defmodule BalancedBinaryTree do
+defmodule Algorithms.DataStructures.BalancedBinaryTree do
+  alias Algorithms.DataStructures.Tree, as: Tree
+
   def create() do
     %Tree{}
   end
@@ -32,16 +34,3 @@ defmodule BalancedBinaryTree do
     end
   end
 end
-
-#use a module so that we can use the structs defined on this script
-defmodule Main do
-  def main do
-    myTree = BalancedBinaryTree.create()
-    myTree = BalancedBinaryTree.insert(myTree, 2)
-    myTree = BalancedBinaryTree.insert(myTree, 1)
-    myTree = BalancedBinaryTree.insert(myTree, -1)
-    IO.puts(inspect(myTree))
-  end
-end
-
-Main.main
