@@ -1,4 +1,5 @@
-defmodule Queue do
+defmodule Algorithms.DataStructures.Queue do
+  alias Algorithms.DataStructures.Queue, as: Queue
   defstruct queue: [], length: 0
 
   def empty(queue) do

@@ -1,4 +1,4 @@
-defmodule RadixSort do
+defmodule Algorithms.Sorting.RadixSort do
   @moduledoc """
     Sorts a list of non-negative numbers
     using radix sort algorithm

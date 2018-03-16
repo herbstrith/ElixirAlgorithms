@@ -1,5 +1,6 @@
-defmodule HashTable do
-defstruct table: %{}, hashFunctionSelector: :mod, hashFunctionParameter: 10
+defmodule Algorithms.DataStructures.HashTable do
+  alias Algorithms.DataStructures.HashTable, as: HashTable
+  defstruct table: %{}, hashFunctionSelector: :mod, hashFunctionParameter: 10
  def insert(hashTable, element) do
    hashFunction = getHashFunction(hashTable)
    %HashTable{

@@ -1,4 +1,4 @@
-defmodule CountingSort do
+defmodule Algorithms.Sorting.CountingSort do
   @moduledoc """
     Sorts a list of non-negative numbers using
     the counting sort algorithm

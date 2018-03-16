@@ -1,6 +1,4 @@
-#dont forget to compite InsertionSort
-
-defmodule BucketSort do
+defmodule Algorithms.Sorting.BucketSort do
   @moduledoc """
     Sorts a list of non-negative numbers with bucket sort
     Uses the InsertionSort Module
@@ -27,7 +25,7 @@ defmodule BucketSort do
       [],
       fn(i, tempList) ->
         #return sorted bucket
-        Enum.concat(InsertionSort.sort(Enum.at(buckets, i)), tempList)
+        Enum.concat(Algorithms.Sorting.InsertionSort.sort(Enum.at(buckets, i)), tempList)
       end)
   end
 end

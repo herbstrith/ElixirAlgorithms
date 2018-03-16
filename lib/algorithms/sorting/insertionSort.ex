@@ -1,6 +1,4 @@
-inputList = [10, 20, 31, 5, 8, 9, 7, 12 ,11]
-
-defmodule InsertionSort do
+defmodule Algorithms.Sorting.InsertionSort do
   #method call
   def sort(list = []) do
     list
@@ -15,7 +13,7 @@ defmodule InsertionSort do
     outputList
   end
   # the "average" case when both lists have entries on them, input list must not be empty
-  defp sort(outputList, inputList = [head|tail]) do
+  defp sort(outputList, _inputList = [head|tail]) do
     insertCrescent(head, outputList) |> sort(tail)
   end
 
@@ -24,7 +22,7 @@ defmodule InsertionSort do
     [actualElement]
   end
   # Inserts the element in outputList
-  defp insertCrescent(actualElement, outputList = [head|tail]) do
+  defp insertCrescent(actualElement, _outputList = [head|tail]) do
     if (head >= actualElement) do
       [actualElement|[head|tail]]
     else

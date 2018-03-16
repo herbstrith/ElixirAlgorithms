@@ -1,9 +1,9 @@
-ExUnit.start()
-
-defmodule  StatisticsAlgorithmsTests do
+defmodule StatisticsAlgorithmsTests do
+  alias Algorithms.Statistics.MinMax, as: MinMax
   use ExUnit.Case, async: true
   @inputListNonNegative [5, 8, 1, 6, 9, 521, 10, 55, 0, 88]
   @inputList [5, 8, 1, 6, 9, -99, 10, 55, 88, -5, -20]
+  doctest Algorithms
 
   test "Should get minimum from a non negative list" do
     assert MinMax.getMinimum(@inputListNonNegative) == 0

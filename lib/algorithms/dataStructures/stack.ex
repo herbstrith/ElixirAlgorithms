@@ -1,4 +1,5 @@
-defmodule Stack do
+defmodule Algorithms.DataStructures.Stack do
+  alias Algorithms.DataStructures.Stack, as: Stack
   defstruct stack: [], top: 0
 
   def empty(stack) do

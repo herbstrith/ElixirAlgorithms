@@ -1,4 +1,4 @@
-defmodule MinMax do
+defmodule Algorithms.Statistics.MinMax do
   def getMinimum(_list = [head|tail]) do
     getComparisonResult(tail, head, fn (x, y) ->
       case x < y do

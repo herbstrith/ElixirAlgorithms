@@ -1,5 +1,5 @@
-defmodule HeapSort do
-
+defmodule Algorithms.Sorting.HeapSort do
+  
   def sort(list) do
     listLength = length(list)
     heap = buildMaxHeap(list)
@@ -69,9 +69,4 @@ defmodule HeapSort do
     # minus one since our index starts at 0
     (2 * (index+1) + 1)-1
   end
-
-  defp parent(index) do
-    div(index + 1, 2)
-  end
-
 end

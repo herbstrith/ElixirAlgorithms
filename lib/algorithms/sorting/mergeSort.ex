@@ -1,5 +1,4 @@
-inputList = [10, 20, 31, 5, 8, 9, 7, 12 ,11]
-defmodule MergeSort do
+defmodule Algorithms.Sorting.MergeSort do
  #module call
  #it does not do in place sorting
  def sort(list) do
