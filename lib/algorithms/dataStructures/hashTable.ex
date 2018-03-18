@@ -28,10 +28,17 @@ defmodule Algorithms.DataStructures.HashTable do
  defp getHashFunction(hashTable) do
    case hashTable.hashFunctionSelector do
      :mod -> &modHash(&1, hashTable.hashFunctionParameter)
+     :multiplication -> &multiplicationHash(&1, hashTable.hashFunctionParameter)
    end
  end
 
  defp modHash(element, hashMod) do
    rem(hashMod, element)
+ end
+
+ defp multiplicationHash(element, m) do
+  constant = 0.8
+  multiplied = element*constant
+  Kernel.trunc(m*(multiplied - Float.floor(multiplied)))
  end
 end
