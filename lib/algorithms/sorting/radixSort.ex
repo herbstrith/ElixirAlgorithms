@@ -2,6 +2,23 @@ defmodule Algorithms.Sorting.RadixSort do
   @moduledoc """
     Sorts a list of non-negative numbers
     using radix sort algorithm
+
+    Pros of radix sort:
+      linear complexity for integers
+
+    Cons of radix sort:
+      situational (only integers)
+  """
+
+   @doc """
+    Returns the sorted given 'list'
+
+    ## Examples
+
+
+      iex> Algorithms.Sorting.RadixSort.sort([1,5,4,8,3,2])
+      [1,2,3,4,5,8]
+
   """
   def sort(list = []) do
     list

@@ -2,6 +2,24 @@ defmodule Algorithms.Sorting.BucketSort do
   @moduledoc """
     Sorts a list of non-negative numbers with bucket sort
     Uses the InsertionSort Module
+
+    Pros of bucket sort:
+      O(n) complexity
+
+    Cons of bucket sort:
+      efficiency is relative to the choice of the buckets
+
+  """
+
+   @doc """
+    Returns the sorted given 'list'
+
+    ## Examples
+
+
+      iex> Algorithms.Sorting.BucketSort.sort([1,5,4,8,3,2])
+      [1,2,3,4,5,8]
+
   """
   def sort(list = [], _base, _multiplier) do
     list

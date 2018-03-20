@@ -1,4 +1,24 @@
 defmodule Algorithms.Sorting.QuickSort do
+  @moduledoc """
+    This is the QuickSort module.
+    It uses the quick sort algorithm to sort a list of numbers.
+    
+    Pros of quick sort:
+      average nlogn
+      recursive by definition
+
+    Cons of quick sort:
+      bad worst case (bad pivot selection)
+  """
+  @doc """
+    Returns the sorted given 'list'
+
+    ## Examples
+
+
+      iex> Algorithms.Sorting.QuickSort.sort([1,5,4,8,3,2])
+      [1,2,3,4,5,8]
+  """
   def sort(list = []) do
     list
   end
@@ -15,6 +35,16 @@ defmodule Algorithms.Sorting.QuickSort do
     sort(left) ++ [head | sort(right)]
   end
 
+  @doc """
+    Returns the sorted given 'list', but uses a tail recursive implementation
+
+    ## Examples
+
+
+      iex> Algorithms.Sorting.InsertionSort.sort([1,5,4,8,3,2])
+      [1,2,3,4,5,8]
+
+  """
   def tailRecursiveSort(list = []) do
     list
   end

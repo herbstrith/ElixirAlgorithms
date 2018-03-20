@@ -1,9 +1,29 @@
 defmodule Algorithms.Sorting.InsertionSort do
+   @moduledoc """
+    This is the Insertion Sort module.
+    It uses the insertion sort algorithm to sort a list of numbers.
+
+    Pros of insertion sort:
+      stable
+      efficient for small data that is almost sorted
+    Cons of insertion sort:
+      n² complexity
+  """
   #method call
   def sort(list = []) do
     list
   end
-  #method call
+
+  @doc """
+    Returns the sorted given 'list'
+
+    ## Examples
+
+
+      iex> Algorithms.Sorting.InsertionSort.sort([1,5,4,8,3,2])
+      [1,2,3,4,5,8]
+
+  """
   def sort(list) do
     sort([hd(list)], tl(list))
   end

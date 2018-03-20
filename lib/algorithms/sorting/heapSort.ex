@@ -1,5 +1,25 @@
 defmodule Algorithms.Sorting.HeapSort do
-  
+  @moduledoc """
+    Sorts a list of non-negative numbers
+    using heap sort algorithm
+
+    Pros of heap sort:
+      nlogn complexity
+
+    Cons of heap sort:
+      unstable
+  """
+
+   @doc """
+    Returns the sorted given 'list'
+
+    ## Examples
+
+
+      iex> Algorithms.Sorting.HeapSort.sort([1,5,4,8,3,2])
+      [1,2,3,4,5,8]
+
+  """
   def sort(list) do
     listLength = length(list)
     heap = buildMaxHeap(list)

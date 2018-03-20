@@ -2,6 +2,24 @@ defmodule Algorithms.Sorting.CountingSort do
   @moduledoc """
     Sorts a list of non-negative numbers using
     the counting sort algorithm
+
+    Pros of counting sort:
+      O(n+k) complexity
+
+    Cons of counting sort:
+      only works for discrete values
+
+  """
+
+   @doc """
+    Returns the sorted given 'list'
+
+    ## Examples
+
+
+      iex> Algorithms.Sorting.CountingSort.sort([1,5,4,8,3,2])
+      [1,2,3,4,5,8]
+
   """
   def sort(list, k) do
     countList = countNumbers(List.duplicate(0, k + 1), list)
