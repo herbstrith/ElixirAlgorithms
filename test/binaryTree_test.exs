@@ -2,7 +2,6 @@ defmodule BinaryTreeTests do
   alias Algorithms.DataStructures.BinaryTree, as: BinaryTree
   use ExUnit.Case, async: true
   doctest Algorithms
-
   test "Should create a empty tree" do
     binaryTree = %BinaryTree{}
     assert binaryTree != nil
@@ -128,4 +127,58 @@ defmodule BinaryTreeTests do
     assert binaryNode.data == 11
   end
 
+  test "Should delete a node in a tree" do
+    binaryTree = %BinaryTree{key: 20, data: 20} 
+      |> BinaryTree.insert(%BinaryTree{key: 22, data: 22})
+      |> BinaryTree.insert(%BinaryTree{key: 11, data: 11})
+      |> BinaryTree.insert(%BinaryTree{key: 26, data: 26})
+      |> BinaryTree.insert(%BinaryTree{key: 1, data: 1})
+      |> BinaryTree.insert(%BinaryTree{key: 21, data: 58})
+      |> BinaryTree.insert(%BinaryTree{key: 15, data: 15})
+
+    # delete a left leaf
+    searchNode = BinaryTree.search(binaryTree, 21)
+    binaryTree = BinaryTree.delete(binaryTree, searchNode)
+    assert binaryTree.key == 20
+    assert binaryTree.right.key == 22
+    assert binaryTree.right.left == nil
+    assert binaryTree.right.right.key == 26
+
+    # delete a right leaf
+    searchNode = BinaryTree.search(binaryTree, 26)
+    binaryTree = BinaryTree.delete(binaryTree, searchNode)
+    assert binaryTree.key == 20
+    assert binaryTree.right.key == 22
+    assert binaryTree.right.left == nil
+    assert binaryTree.right.right == nil
+
+    # delete a node with 2 leafs
+    searchNode = BinaryTree.search(binaryTree, 11)
+    binaryTree = BinaryTree.delete(binaryTree, searchNode)
+    assert binaryTree.key == 20
+    assert binaryTree.right.key == 22
+    assert binaryTree.right.left == nil
+    assert binaryTree.right.right == nil
+    assert binaryTree.left.key == 15
+    assert binaryTree.left.left.key == 1
+    assert binaryTree.left.right == nil
+
+    # delete root
+    searchNode = BinaryTree.search(binaryTree, 20)
+    binaryTree = BinaryTree.delete(binaryTree, searchNode)
+    assert binaryTree.key == 22
+    assert binaryTree.right == nil
+    assert binaryTree.left.key == 15
+    assert binaryTree.left.left.key == 1
+    assert binaryTree.left.right == nil
+
+    # should try to delete a unexistent node without error
+    binaryTree = BinaryTree.delete(binaryTree, searchNode)
+    assert binaryTree.key == 22
+    assert binaryTree.right == nil
+    assert binaryTree.left.key == 15
+    assert binaryTree.left.left.key == 1
+    assert binaryTree.left.right == nil
+
+  end
 end
