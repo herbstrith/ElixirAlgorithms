@@ -1,6 +1,3 @@
-# defmodule Algorithms.DataStructures.TreeNode do
-#   defstruct key: 0, parent: nil, left: nil, right: nil, data: 0
-# end
 defmodule Algorithms.DataStructures.BinaryTree do
   alias Algorithms.DataStructures.BinaryTree, as: TreeNode
   defstruct key: nil, parent: nil, left: nil, right: nil, data: nil
