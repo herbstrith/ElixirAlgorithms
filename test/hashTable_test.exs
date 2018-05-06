@@ -1,7 +1,6 @@
-defmodule HashTableTests do
+defmodule Algorithms.DataStructures.HashTableTests do
   alias Algorithms.DataStructures.HashTable, as: HashTable
   use ExUnit.Case, async: true
-  doctest Algorithms
 
   test "Should create a empty HashTable" do
     hashTable = %HashTable{}

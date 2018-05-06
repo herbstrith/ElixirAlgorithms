@@ -1,7 +1,6 @@
-defmodule StackTests do
+defmodule Algorithms.DataStructures.StackTests do
   alias Algorithms.DataStructures.Stack, as: Stack
   use ExUnit.Case, async: true
-  doctest Algorithms
 
   test "Should create a empty stack" do
     stack = %Stack{}

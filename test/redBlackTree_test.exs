@@ -1,8 +1,7 @@
-defmodule RedBlackTreeTests do
+defmodule Algorithms.DataStructures.RedBlackTreeTests do
   alias Algorithms.DataStructures.RedBlackTree, as: RBTree
   use ExUnit.Case, async: true
 
-  doctest Algorithms
   test "Should create a empty tree" do
     rbTree = %RBTree{}
     assert rbTree != nil
@@ -152,7 +151,6 @@ defmodule RedBlackTreeTests do
     binaryTree = RBTree.insert(binaryTree, %RBTree{key: 25, data: 25}) |> RBTree.insert(%RBTree{key: 30, data: 30})
     binaryTree = RBTree.insert(binaryTree, %RBTree{key: 23, data: 23}) |> RBTree.insert(%RBTree{key: 22, data: 22}) |> RBTree.insert(%RBTree{key: 19, data: 19})
     binaryTree = RBTree.delete(binaryTree, 30)
-    IO.puts(inspect(binaryTree))
     assert binaryTree.left.key == 14
     assert binaryTree.left.data == 14
     assert binaryTree.right.key == 22

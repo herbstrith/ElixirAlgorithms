@@ -1,7 +1,7 @@
-defmodule BinaryTreeTests do
+defmodule Algorithms.DataStructures.BinaryTreeTests do
   alias Algorithms.DataStructures.BinaryTree, as: BinaryTree
   use ExUnit.Case, async: true
-  doctest Algorithms
+
   test "Should create a empty tree" do
     binaryTree = %BinaryTree{}
     assert binaryTree != nil
@@ -35,7 +35,7 @@ defmodule BinaryTreeTests do
   end
 
   test "Should insert multiple times in a tree" do
-    binaryTree = %BinaryTree{key: 20, data: 20} 
+    binaryTree = %BinaryTree{key: 20, data: 20}
       |> BinaryTree.insert(%BinaryTree{key: 22, data: 22})
       |> BinaryTree.insert(%BinaryTree{key: 11, data: 11})
       |> BinaryTree.insert(%BinaryTree{key: 21, data: 21})
@@ -53,7 +53,7 @@ defmodule BinaryTreeTests do
   end
 
   test "Should insert multiple times in a tree and then search" do
-    binaryTree = %BinaryTree{key: 20, data: 20} 
+    binaryTree = %BinaryTree{key: 20, data: 20}
       |> BinaryTree.insert(%BinaryTree{key: 22, data: 22})
       |> BinaryTree.insert(%BinaryTree{key: 11, data: 11})
       |> BinaryTree.insert(%BinaryTree{key: 21, data: 58})
@@ -71,7 +71,7 @@ defmodule BinaryTreeTests do
   end
 
   test "Should get the minimum in a tree" do
-    binaryTree = %BinaryTree{key: 20, data: 20} 
+    binaryTree = %BinaryTree{key: 20, data: 20}
       |> BinaryTree.insert(%BinaryTree{key: 22, data: 22})
       |> BinaryTree.insert(%BinaryTree{key: 11, data: 11})
       |> BinaryTree.insert(%BinaryTree{key: 26, data: 26})
@@ -89,7 +89,7 @@ defmodule BinaryTreeTests do
   end
 
   test "Should get the maximum in a tree" do
-    binaryTree = %BinaryTree{key: 20, data: 20} 
+    binaryTree = %BinaryTree{key: 20, data: 20}
       |> BinaryTree.insert(%BinaryTree{key: 22, data: 22})
       |> BinaryTree.insert(%BinaryTree{key: 11, data: 11})
       |> BinaryTree.insert(%BinaryTree{key: 26, data: 26})
@@ -107,7 +107,7 @@ defmodule BinaryTreeTests do
   end
 
   test "Should get the successor in a tree" do
-    binaryTree = %BinaryTree{key: 20, data: 20} 
+    binaryTree = %BinaryTree{key: 20, data: 20}
       |> BinaryTree.insert(%BinaryTree{key: 22, data: 22})
       |> BinaryTree.insert(%BinaryTree{key: 11, data: 11})
       |> BinaryTree.insert(%BinaryTree{key: 26, data: 26})
@@ -128,7 +128,7 @@ defmodule BinaryTreeTests do
   end
 
   test "Should delete a node in a tree" do
-    binaryTree = %BinaryTree{key: 20, data: 20} 
+    binaryTree = %BinaryTree{key: 20, data: 20}
       |> BinaryTree.insert(%BinaryTree{key: 22, data: 22})
       |> BinaryTree.insert(%BinaryTree{key: 11, data: 11})
       |> BinaryTree.insert(%BinaryTree{key: 26, data: 26})

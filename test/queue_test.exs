@@ -1,7 +1,6 @@
-defmodule QueueTests do
+defmodule Algorithms.DataStructures.QueueTests do
   alias Algorithms.DataStructures.Queue, as: Queue
   use ExUnit.Case, async: true
-  doctest Algorithms
 
   test "Should create a empty queue" do
     queue = %Queue{}

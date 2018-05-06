@@ -157,7 +157,7 @@ defmodule Algorithms.DataStructures.BinaryTree do
   end
 
   #transplanting the root
-  defp transplant(parentNode = nil, deleteNode) do
+  defp transplant(_parentNode = nil, deleteNode) do
     minimumNode = minimum(deleteNode.right)
     treeWithoutMinimum = removeLeaf(deleteNode.right, minimumNode)
     %TreeNode{minimumNode | parent: nil, right: treeWithoutMinimum, left: deleteNode.left }
@@ -169,7 +169,7 @@ defmodule Algorithms.DataStructures.BinaryTree do
     transplantTree = %TreeNode{minimumNode | parent: parentNode.key, right: treeWithoutMinimum, left: deleteNode.left }
     %TreeNode{ parentNode | left: transplantTree }
   end
-  
+
   defp removeLeaf(actualNode = %TreeNode{}, leafNode = %TreeNode{}) do
     cond do
       actualNode.key == leafNode.key ->
