@@ -210,9 +210,13 @@ defmodule Algorithms.DataStructures.RedBlackTree do
      %{node | color: :red}
    end
 
-   defp redden(node = %RBNode{}) do
+  defp redden(node = %RBNode{}) do
      node
   end
+
+  defp redden(node = :emptyempty) do
+    node
+ end
 
   defp deleteRec(actualTreeNode = %RBNode{color: :red, left: nil, right: nil}, deleteKey) do
      cond do
@@ -374,12 +378,15 @@ defmodule Algorithms.DataStructures.RedBlackTree do
    leftNode = %RBNode{ color: :blackblack},
    actualNode = %RBNode{},
    rightNode = %RBNode{color: :red, left: %RBNode{color: :black}}) do
-
-      balance(:black,
-      %{actualNode | color: :red, left: %{leftNode | color: :black}, right: rightNode.left.left },
-      rightNode,
-      rightNode.right
+    %{ rightNode |
+      color: :black,
+      left: balance(
+        :black,
+        %{actualNode | color: :red, left: %{leftNode | color: :black}, right: rightNode.left.left },
+        rightNode.left,
+        rightNode.left.left
       )
+   }
   end
 
   # rotate B EE x (T R (T B c y d) z e) = T B (balance B (T R E x c) y d) z e
@@ -387,12 +394,14 @@ defmodule Algorithms.DataStructures.RedBlackTree do
    _leftNode = :emptyempty,
    actualNode = %RBNode{},
    rightNode = %RBNode{color: :red, left: %RBNode{color: :black}}) do
-
-      balance(:black,
+    %{ rightNode |
+      color: :black,
+      left: balance(:black,
       %{actualNode | color: :red, left: nil, right: rightNode.left.left },
       rightNode.left,
       rightNode.right
       )
+   }
   end
 
   # rotate B (T R a w (T B b x c)) y (T BB d z e) = T B a w (balance B b x (T R c y (T B d z e)))
@@ -444,7 +453,7 @@ defmodule Algorithms.DataStructures.RedBlackTree do
 
   # min_del (T B E x (T R E y E)) = (x,T B E y E)
   defp min_del (actualTreeNode = %RBNode{color: :black, left: nil, right: %RBNode{color: :red, left: nil, right: nil}}) do
-    {actualTreeNode, actualTreeNode.right}
+    {actualTreeNode, %{actualTreeNode.right | color: :black}}
   end
 
   # min_del (T c a x b) = let (x',a') = min_del a
