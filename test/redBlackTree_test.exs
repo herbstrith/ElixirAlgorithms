@@ -101,12 +101,12 @@ defmodule Algorithms.DataStructures.RedBlackTreeTests do
     binaryTree = RBTree.delete(originalBinaryTree, 8)
     binaryTree = RBTree.delete(originalBinaryTree, 8) |> RBTree.delete(7) |> RBTree.delete(6) |> RBTree.delete(5) |> RBTree.delete(4) |> RBTree.delete(3) |> RBTree.delete(2) |> RBTree.delete(1)
     binaryTree = RBTree.delete(originalBinaryTree, 8) |> RBTree.delete(84) |> RBTree.delete(15) |> RBTree.delete(2) |> RBTree.delete(14) |> RBTree.delete(15)
-    binaryTree = RBTree.delete(originalBinaryTree, 1) |>
-     RBTree.delete(20) |>
-     RBTree.delete(25) |>
-     RBTree.delete(10) |>
-     RBTree.delete(14) |>
-     RBTree.delete(22)
+    binaryTree = RBTree.delete(originalBinaryTree, 1)
+    binaryTree = RBTree.delete(binaryTree, 20)
+    binaryTree = RBTree.delete(binaryTree, 25)
+    binaryTree = RBTree.delete(binaryTree, 10)
+    binaryTree = RBTree.delete(binaryTree, 14)
+    binaryTree = RBTree.delete(binaryTree, 22)
   end
 
   test "Should delete in a tree (left node)" do
