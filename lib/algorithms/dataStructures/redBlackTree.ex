@@ -189,6 +189,14 @@ defmodule Algorithms.DataStructures.RedBlackTree do
     }
   end
 
+  def insert(newNode = %RBNode{}) do
+    blacken(newNode)
+  end
+
+  def insert(actualTreeNode = nil, newNode = %RBNode{}) do
+    blacken(newNode)
+  end
+
   def insert(actualTreeNode = %RBNode{}, newNode = %RBNode{}) do
     blacken(insertRec(actualTreeNode, newNode))
   end
