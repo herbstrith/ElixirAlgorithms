@@ -190,11 +190,11 @@ defmodule Algorithms.DataStructures.RedBlackTree do
   end
 
   def insert(newNode = %RBNode{}) do
-    blacken(newNode)
+    blacken(insertRec(nil, newNode))
   end
 
-  def insert(actualTreeNode = nil, newNode = %RBNode{}) do
-    blacken(newNode)
+  def insert(nil, newNode = %RBNode{}) do
+    blacken(insertRec(nil, newNode))
   end
 
   def insert(actualTreeNode = %RBNode{}, newNode = %RBNode{}) do
@@ -572,10 +572,6 @@ defmodule Algorithms.DataStructures.RedBlackTree do
     {xl, al} = min_del(actualTreeNode.left)
     x = %{actualTreeNode | left: nil, right: nil}
     {xl, rotate(actualTreeNode.color, al, x, actualTreeNode.right)}
-  end
-
-  defp min_del(actualTreeNode) do
-    actualTreeNode
   end
 
   def search(_treeNode, _key = nil) do
