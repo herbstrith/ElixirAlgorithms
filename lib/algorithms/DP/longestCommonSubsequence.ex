@@ -28,30 +28,31 @@ defmodule Algorithms.DP.LongestCommonSubsequence do
   defp innerLoop(j, {i, m, n, result_matrix, stringA, stringB}) do
     cond do
       i == 0 || j == 0 ->
-        line = elem(result_matrix, i)
-        value = 0
-        actualEditedValue = put_elem(line, j, value)
-        result_matrix = put_elem(result_matrix, i, actualEditedValue)
+        result_matrix = tupleMatrixSetAt(result_matrix, i, j, 0)
         { i, m, n, result_matrix, stringA, stringB }
       String.at(stringA, i - 1) == String.at(stringB, j - 1) ->
-        line = elem(result_matrix, (i-1))
-        value = elem(line, j-1) + 1
-        lineToEdit = elem(result_matrix, i)
-        actualEditedLine = put_elem(lineToEdit, j, value)
-        result_matrix = put_elem(result_matrix, i, actualEditedLine)
+        new_value = tupleMatrixGet(result_matrix, i-1, j-1) + 1
+        result_matrix = tupleMatrixSetAt(result_matrix, i, j, new_value)
         { i, m, n, result_matrix, stringA, stringB }
       true ->
-        lineBack = elem(result_matrix, (i - 1))
-        valueBack = elem(lineBack, j)
-        lineUp = elem(result_matrix, i)
-        valueUp = elem(lineUp, j - 1)
-        line = elem(result_matrix, i)
-        newValue = max(valueUp, valueBack)
-        actualEditedValue = put_elem(line, j, newValue)
-        result_matrix = put_elem(result_matrix, i, actualEditedValue)
+        value_back = tupleMatrixGet(result_matrix, i - 1, j)
+        value_up = tupleMatrixGet(result_matrix, i, j-1)
+        new_value = max(value_up, value_back)
+        result_matrix = tupleMatrixSetAt(result_matrix, i, j, new_value)
         { i, m, n, result_matrix, stringA, stringB }
     end
 
+  end
+
+  defp tupleMatrixSetAt(tuple_matrix, pos_i, pos_j, value) do
+    line_i = elem(tuple_matrix, pos_i)
+    edited_line_i = put_elem(line_i, pos_j, value)
+    put_elem(tuple_matrix, pos_i, edited_line_i)
+  end
+
+  defp tupleMatrixGet(tuple_matrix, pos_i, pos_j) do
+    line_i = elem(tuple_matrix, pos_i)
+    elem(line_i, pos_j)
   end
 
 end
