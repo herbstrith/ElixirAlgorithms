@@ -23,9 +23,7 @@ defmodule Algorithms.DP.MatrixChainMultiplication do
 
   defp memoizedMatrixChainOrderLinesIteration(i, {n, m, actualLength, dims}) do
     j = i + actualLength
-    line = elem(m,i)
-    row = put_elem(line, j, 99999999)
-    m = put_elem(m, i, row)
+    m = Algorithms.Util.TupleMatrix.put(m, i, j, 99999999)
     {n , m, _actualLength, _i, _j, _dims} = Enum.reduce(
       i..(j - 1),
       {n, m, actualLength, i, j, dims},
@@ -34,16 +32,12 @@ defmodule Algorithms.DP.MatrixChainMultiplication do
   end
 
   defp memoizedMatrixChainOrderColumnsIteration(k, {n, m, actualLength, i, j, dims}) do
-    line = elem(m, i)
-    value = elem(line, k)
-    diagonalLine = elem(m, k + 1)
-    diagonalValue = elem(diagonalLine, j)
+    value = Algorithms.Util.TupleMatrix.get(m, i, k)
+    diagonalValue = Algorithms.Util.TupleMatrix.get(m, k + 1, j)
     cost = value + diagonalValue + elem(dims, i) * elem(dims, k+1) * elem(dims, j+1)
-    actualLine = elem(m, i)
-    actualValue =  elem(actualLine, j)
+    actualValue = Algorithms.Util.TupleMatrix.get(m, i, j)
     if (cost < actualValue) do
-      actualEditedRow = put_elem(actualLine, j, cost)
-      m = put_elem(m, i, actualEditedRow)
+      m = Algorithms.Util.TupleMatrix.put(m, i, j, cost)
       {n , m, actualLength, i, j, dims}
     else
       {n , m, actualLength, i, j, dims}
