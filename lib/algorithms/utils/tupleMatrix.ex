@@ -9,5 +9,4 @@ defmodule Algorithms.Util.TupleMatrix do
     line_i = elem(tuple_matrix, pos_i)
     elem(line_i, pos_j)
   end
-
 end

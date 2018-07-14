@@ -24,5 +24,4 @@ defmodule Algorithms.Util.TupleMatrixTest do
     test_matrix = TupleMatrix.put(test_matrix, 1, 1, 9)
     assert TupleMatrix.get(test_matrix, 1, 1) == 9
   end
-
 end

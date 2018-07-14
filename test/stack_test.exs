@@ -15,7 +15,7 @@ defmodule Algorithms.DataStructures.StackTests do
 
   test "Should return that a stack with elements is not empty" do
     stack = %Stack{}
-    stack = Stack.push(stack, -99)|>Stack.push(1)
+    stack = Stack.push(stack, -99) |> Stack.push(1)
     assert Stack.empty(stack) == false
   end
 
@@ -28,7 +28,7 @@ defmodule Algorithms.DataStructures.StackTests do
 
   test "Should push 3 elements to a stack" do
     stack = %Stack{}
-    stack = Stack.push(stack, -99)|>Stack.push(1)|>Stack.push(5)
+    stack = Stack.push(stack, -99) |> Stack.push(1) |> Stack.push(5)
     assert length(stack.stack) == 3
     assert stack.top == 3
   end
@@ -44,7 +44,7 @@ defmodule Algorithms.DataStructures.StackTests do
 
   test "Should push 3 elements to a stack and then pop one element" do
     stack = %Stack{}
-    stack = Stack.push(stack, -99)|>Stack.push(1)|>Stack.push(5)
+    stack = Stack.push(stack, -99) |> Stack.push(1) |> Stack.push(5)
     {element, stack} = Stack.pop(stack)
     assert length(stack.stack) == 2
     assert stack.top == 2
@@ -53,7 +53,7 @@ defmodule Algorithms.DataStructures.StackTests do
 
   test "Should push 3 elements to a stack and then pop all of them in the correct order" do
     stack = %Stack{}
-    stack = Stack.push(stack, -99)|>Stack.push(1)|>Stack.push(5)
+    stack = Stack.push(stack, -99) |> Stack.push(1) |> Stack.push(5)
     {element1, stack} = Stack.pop(stack)
     {element2, stack} = Stack.pop(stack)
     {element3, stack} = Stack.pop(stack)

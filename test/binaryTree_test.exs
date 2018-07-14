@@ -35,10 +35,12 @@ defmodule Algorithms.DataStructures.BinaryTreeTests do
   end
 
   test "Should insert multiple times in a tree" do
-    binaryTree = %BinaryTree{key: 20, data: 20}
+    binaryTree =
+      %BinaryTree{key: 20, data: 20}
       |> BinaryTree.insert(%BinaryTree{key: 22, data: 22})
       |> BinaryTree.insert(%BinaryTree{key: 11, data: 11})
       |> BinaryTree.insert(%BinaryTree{key: 21, data: 21})
+
     assert binaryTree.key != nil
     assert binaryTree.data != nil
     assert binaryTree.right.key == 22
@@ -53,10 +55,12 @@ defmodule Algorithms.DataStructures.BinaryTreeTests do
   end
 
   test "Should insert multiple times in a tree and then search" do
-    binaryTree = %BinaryTree{key: 20, data: 20}
+    binaryTree =
+      %BinaryTree{key: 20, data: 20}
       |> BinaryTree.insert(%BinaryTree{key: 22, data: 22})
       |> BinaryTree.insert(%BinaryTree{key: 11, data: 11})
       |> BinaryTree.insert(%BinaryTree{key: 21, data: 58})
+
     binaryNode = BinaryTree.search(binaryTree, 21)
     assert binaryNode.key == 21
     assert binaryNode.data == 58
@@ -71,12 +75,14 @@ defmodule Algorithms.DataStructures.BinaryTreeTests do
   end
 
   test "Should get the minimum in a tree" do
-    binaryTree = %BinaryTree{key: 20, data: 20}
+    binaryTree =
+      %BinaryTree{key: 20, data: 20}
       |> BinaryTree.insert(%BinaryTree{key: 22, data: 22})
       |> BinaryTree.insert(%BinaryTree{key: 11, data: 11})
       |> BinaryTree.insert(%BinaryTree{key: 26, data: 26})
       |> BinaryTree.insert(%BinaryTree{key: 1, data: 1})
       |> BinaryTree.insert(%BinaryTree{key: 21, data: 58})
+
     binaryNode = BinaryTree.minimum(binaryTree)
     assert binaryNode.key == 1
     assert binaryNode.data == 1
@@ -89,12 +95,14 @@ defmodule Algorithms.DataStructures.BinaryTreeTests do
   end
 
   test "Should get the maximum in a tree" do
-    binaryTree = %BinaryTree{key: 20, data: 20}
+    binaryTree =
+      %BinaryTree{key: 20, data: 20}
       |> BinaryTree.insert(%BinaryTree{key: 22, data: 22})
       |> BinaryTree.insert(%BinaryTree{key: 11, data: 11})
       |> BinaryTree.insert(%BinaryTree{key: 26, data: 26})
       |> BinaryTree.insert(%BinaryTree{key: 1, data: 1})
       |> BinaryTree.insert(%BinaryTree{key: 21, data: 58})
+
     binaryNode = BinaryTree.maximum(binaryTree)
     assert binaryNode.key == 26
     assert binaryNode.data == 26
@@ -107,12 +115,14 @@ defmodule Algorithms.DataStructures.BinaryTreeTests do
   end
 
   test "Should get the successor in a tree" do
-    binaryTree = %BinaryTree{key: 20, data: 20}
+    binaryTree =
+      %BinaryTree{key: 20, data: 20}
       |> BinaryTree.insert(%BinaryTree{key: 22, data: 22})
       |> BinaryTree.insert(%BinaryTree{key: 11, data: 11})
       |> BinaryTree.insert(%BinaryTree{key: 26, data: 26})
       |> BinaryTree.insert(%BinaryTree{key: 1, data: 1})
       |> BinaryTree.insert(%BinaryTree{key: 21, data: 58})
+
     searchNode = BinaryTree.search(binaryTree, 21)
     binaryNode = BinaryTree.successor(binaryTree, searchNode)
     assert binaryNode.key == 22
@@ -128,7 +138,8 @@ defmodule Algorithms.DataStructures.BinaryTreeTests do
   end
 
   test "Should delete a node in a tree" do
-    binaryTree = %BinaryTree{key: 20, data: 20}
+    binaryTree =
+      %BinaryTree{key: 20, data: 20}
       |> BinaryTree.insert(%BinaryTree{key: 22, data: 22})
       |> BinaryTree.insert(%BinaryTree{key: 11, data: 11})
       |> BinaryTree.insert(%BinaryTree{key: 26, data: 26})
@@ -179,6 +190,5 @@ defmodule Algorithms.DataStructures.BinaryTreeTests do
     assert binaryTree.left.key == 15
     assert binaryTree.left.left.key == 1
     assert binaryTree.left.right == nil
-
   end
 end

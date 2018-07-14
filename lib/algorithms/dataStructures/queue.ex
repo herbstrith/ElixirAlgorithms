@@ -13,7 +13,7 @@ defmodule Algorithms.DataStructures.Queue do
     }
   end
 
-  def dequeue(queue = %Queue{length: length})  when length > 0 do
+  def dequeue(queue = %Queue{length: length}) when length > 0 do
     {
       hd(queue.queue),
       %Queue{queue: tl(queue.queue), length: queue.length - 1}

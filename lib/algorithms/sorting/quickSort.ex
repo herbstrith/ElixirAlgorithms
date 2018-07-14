@@ -2,7 +2,7 @@ defmodule Algorithms.Sorting.QuickSort do
   @moduledoc """
     This is the QuickSort module.
     It uses the quick sort algorithm to sort a list of numbers.
-    
+
     Pros of quick sort:
       average nlogn
       recursive by definition
@@ -26,12 +26,12 @@ defmodule Algorithms.Sorting.QuickSort do
   def sort([head | tail]) do
     # get values that are bigger than head in one list and smaller in another
     # works as the "partition" part of the algorithm
-    { left, right } = Enum.split_with(
-      tail,
-      fn(x) -> 
+    {left, right} =
+      Enum.split_with(tail, fn x ->
         x < head
       end)
-    #the two recursive calls where our "q" is defined by the head
+
+    # the two recursive calls where our "q" is defined by the head
     sort(left) ++ [head | sort(right)]
   end
 
@@ -45,18 +45,18 @@ defmodule Algorithms.Sorting.QuickSort do
       [1,2,3,4,5,8]
 
   """
-  def tailRecursiveSort(list = []) do
+  def tail_recursive_sort(list = []) do
     list
   end
 
-  def tailRecursiveSort(list = [head | _tail]) do
+  def tail_recursive_sort(list = [head | _tail]) do
     # works as the "partition" part of the algorithm
-    { left, right } = Enum.split_with(
-      list,
-      fn(x) -> 
+    {left, right} =
+      Enum.split_with(list, fn x ->
         x < head
       end)
-    [smallest|rest] = tailRecursiveSort(left) ++ right
-    [smallest|tailRecursiveSort(rest)]
+
+    [smallest | rest] = tail_recursive_sort(left) ++ right
+    [smallest | tail_recursive_sort(rest)]
   end
 end

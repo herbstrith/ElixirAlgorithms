@@ -2,7 +2,7 @@ defmodule Algorithms.Sorting.MergeSort do
   @moduledoc """
     This is the MergeSort module.
     It uses the merge sort algorithm to sort a list of numbers.
-    
+
     Pros of insertion sort:
       nlogn complexity
       recursive by definition
@@ -17,14 +17,15 @@ defmodule Algorithms.Sorting.MergeSort do
       [1,2,3,4,5,8]
   """
   def sort(list) do
-    listLength = length(list)
-    if (listLength < 2) do
+    list_length = length(list)
+
+    if list_length < 2 do
       list
     else
-      {left, right} = Enum.split(list, div(listLength, 2))
+      {left, right} = Enum.split(list, div(list_length, 2))
       merge(sort(left), sort(right))
     end
- end
+  end
 
   defp merge(_left = [], right) do
     right
@@ -34,12 +35,11 @@ defmodule Algorithms.Sorting.MergeSort do
     left
   end
 
-  defp merge(left=[lhead|ltail], right=[rhead|rtail]) do
-    if (lhead < rhead) do
-      [lhead|merge(ltail, right)]
+  defp merge(left = [lhead | ltail], right = [rhead | rtail]) do
+    if lhead < rhead do
+      [lhead | merge(ltail, right)]
     else
-      [rhead|merge(left,rtail)]
+      [rhead | merge(left, rtail)]
     end
   end
-
 end

@@ -1,6 +1,6 @@
 defmodule Algorithms.Statistics.MinMax do
-  def getMinimum(_list = [head|tail]) do
-    getComparisonResult(tail, head, fn (x, y) ->
+  def get_minimum(_list = [head | tail]) do
+    get_comparison_result(tail, head, fn x, y ->
       case x < y do
         true -> x
         false -> y
@@ -8,8 +8,8 @@ defmodule Algorithms.Statistics.MinMax do
     end)
   end
 
-  def getMaximum(_list = [head|tail]) do
-    getComparisonResult(tail, head, fn (x, y) ->
+  def get_maximum(_list = [head | tail]) do
+    get_comparison_result(tail, head, fn x, y ->
       case x > y do
         true -> x
         false -> y
@@ -17,26 +17,30 @@ defmodule Algorithms.Statistics.MinMax do
     end)
   end
 
-  def getMinimumAndMaximum(_list = [head|tail]) do
-    getComparisonResult(tail, %{min: head, max: head}, fn (x, y) -> 
-      y = case x < y[:min] do
+  def get_minimum_and_maximum(_list = [head | tail]) do
+    get_comparison_result(tail, %{min: head, max: head}, fn x, y ->
+      y =
+        case x < y[:min] do
           true -> %{y | :min => x}
           false -> y
-      end
-      y = case x > y[:max] do
+        end
+
+      y =
+        case x > y[:max] do
           true -> %{y | :max => x}
           false -> y
-      end
+        end
+
       y
     end)
   end
 
-  defp getComparisonResult(_list = [head|tail], result, comparison) do
+  defp get_comparison_result(_list = [head | tail], result, comparison) do
     result = comparison.(head, result)
-    getComparisonResult(tail, result, comparison)
+    get_comparison_result(tail, result, comparison)
   end
 
-  defp getComparisonResult(_list = [], result, _comparison) do
+  defp get_comparison_result(_list = [], result, _comparison) do
     result
   end
 end

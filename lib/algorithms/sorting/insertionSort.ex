@@ -1,5 +1,5 @@
 defmodule Algorithms.Sorting.InsertionSort do
-   @moduledoc """
+  @moduledoc """
     This is the Insertion Sort module.
     It uses the insertion sort algorithm to sort a list of numbers.
 
@@ -9,7 +9,7 @@ defmodule Algorithms.Sorting.InsertionSort do
     Cons of insertion sort:
       n² complexity
   """
-  #method call
+  # method call
   def sort(list = []) do
     list
   end
@@ -29,25 +29,26 @@ defmodule Algorithms.Sorting.InsertionSort do
   end
 
   # the last case of the recursion
-  defp sort(outputList, _inputList = []) do
-    outputList
+  defp sort(output_list, _input_list = []) do
+    output_list
   end
+
   # the "average" case when both lists have entries on them, input list must not be empty
-  defp sort(outputList, _inputList = [head|tail]) do
-    insertCrescent(head, outputList) |> sort(tail)
+  defp sort(output_list, _input_list = [head | tail]) do
+    insert_crescent(head, output_list) |> sort(tail)
   end
 
   # when the output list is empty we just return the element
-  defp insertCrescent(actualElement, _outputList = []) do
-    [actualElement]
-  end
-  # Inserts the element in outputList
-  defp insertCrescent(actualElement, _outputList = [head|tail]) do
-    if (head >= actualElement) do
-      [actualElement|[head|tail]]
-    else
-      [head|insertCrescent(actualElement, tail)]
-    end
+  defp insert_crescent(actual_element, _output_list = []) do
+    [actual_element]
   end
 
+  # Inserts the element in output_list
+  defp insert_crescent(actual_element, _output_list = [head | tail]) do
+    if head >= actual_element do
+      [actual_element | [head | tail]]
+    else
+      [head | insert_crescent(actual_element, tail)]
+    end
+  end
 end

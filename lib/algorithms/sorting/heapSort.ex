@@ -10,7 +10,7 @@ defmodule Algorithms.Sorting.HeapSort do
       unstable
   """
 
-   @doc """
+  @doc """
     Returns the sorted given 'list'
 
     ## Examples
@@ -21,54 +21,59 @@ defmodule Algorithms.Sorting.HeapSort do
 
   """
   def sort(list) do
-    listLength = length(list)
-    heap = buildMaxHeap(list)
-    heapSort(heap, listLength - 1, listLength - 1)
+    list_length = length(list)
+    heap = build_max_heap(list)
+    heap_sort(heap, list_length - 1, list_length - 1)
   end
 
-  defp heapSort(list, index, listLength) do
+  defp heap_sort(list, index, list_length) do
     if index > 0 do
-      listLength = listLength - 1
-      newList = exchange(list, index , 0)
-      heap = maxHeapify(newList, 0, listLength)
+      list_length = list_length - 1
+      new_list = exchange(list, index, 0)
+      heap = max_heapify(new_list, 0, list_length)
       index = index - 1
-      heapSort(heap, index, listLength)
+      heap_sort(heap, index, list_length)
     else
       list
     end
   end
 
-  def buildMaxHeap(list) do
-    listLength =  length(list)
-    buildMaxHeap(list, div(listLength, 2) - 1, listLength - 1)
+  def build_max_heap(list) do
+    list_length = length(list)
+    build_max_heap(list, div(list_length, 2) - 1, list_length - 1)
   end
 
-  defp buildMaxHeap(heap, index, listSize) do
-    if(index >= 0) do
-      myHeap = maxHeapify(heap, index, listSize)
+  defp build_max_heap(heap, index, list_size) do
+    if index >= 0 do
+      myHeap = max_heapify(heap, index, list_size)
       index = index - 1
-      buildMaxHeap(myHeap, index, listSize)
+      build_max_heap(myHeap, index, list_size)
     else
       heap
     end
   end
+
   # would be better if we didnt have to access values at index or know the length
-  defp maxHeapify(list, index, listLength) do
-    leftValue = Enum.at(list, left(index))
-    rightValue = Enum.at(list, right(index))
-    actualValue = Enum.at(list, index)
-    largest = case left(index) <= listLength and leftValue > actualValue do
-      true -> left(index)
-      false -> index
-    end
-    largest = case right(index) <= listLength and rightValue > Enum.at(list, largest) do
-      true -> right(index)
-      false -> largest
-    end
+  defp max_heapify(list, index, list_length) do
+    left_value = Enum.at(list, left(index))
+    right_value = Enum.at(list, right(index))
+    actual_value = Enum.at(list, index)
+
+    largest =
+      case left(index) <= list_length and left_value > actual_value do
+        true -> left(index)
+        false -> index
+      end
+
+    largest =
+      case right(index) <= list_length and right_value > Enum.at(list, largest) do
+        true -> right(index)
+        false -> largest
+      end
 
     if largest != index do
-      updatedList = exchange(list, index, largest)
-      maxHeapify(updatedList, largest, listLength)
+      updated_list = exchange(list, index, largest)
+      max_heapify(updated_list, largest, list_length)
     else
       list
     end
@@ -76,17 +81,17 @@ defmodule Algorithms.Sorting.HeapSort do
 
   defp exchange(list, index, largest) do
     temp = Enum.at(list, index)
-    newList = List.update_at(list, index, fn (_a) -> Enum.at(list, largest) end)
-    List.update_at(newList, largest, fn (_a) -> temp end)
+    new_list = List.update_at(list, index, fn _a -> Enum.at(list, largest) end)
+    List.update_at(new_list, largest, fn _a -> temp end)
   end
 
   defp left(index) do
     # minus one since our index starts at 0
-    (2 * (index + 1)) - 1
+    2 * (index + 1) - 1
   end
 
   defp right(index) do
     # minus one since our index starts at 0
-    (2 * (index+1) + 1)-1
+    2 * (index + 1) + 1 - 1
   end
 end

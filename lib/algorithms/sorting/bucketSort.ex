@@ -26,10 +26,10 @@ defmodule Algorithms.Sorting.BucketSort do
   end
 
   def sort(list, base, multiplier) do
-    baseBuckets = List.duplicate([], base)
+    base_buckets = List.duplicate([], base)
     buckets = Enum.reduce(
       list,
-      baseBuckets,
+      base_buckets,
       fn (element, tempList) ->
         digit = div(element, base * multiplier)
         digit = case digit >= base do

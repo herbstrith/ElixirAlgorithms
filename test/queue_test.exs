@@ -15,7 +15,7 @@ defmodule Algorithms.DataStructures.QueueTests do
 
   test "Should return that a queue with elements is not empty" do
     queue = %Queue{}
-    queue = Queue.enqueue(queue, -99)|>Queue.enqueue(1)
+    queue = Queue.enqueue(queue, -99) |> Queue.enqueue(1)
     assert Queue.empty(queue) == false
   end
 
@@ -28,7 +28,7 @@ defmodule Algorithms.DataStructures.QueueTests do
 
   test "Should enqueue 3 elements to a queue" do
     queue = %Queue{}
-    queue = Queue.enqueue(queue, -99)|>Queue.enqueue(1)|>Queue.enqueue(5)
+    queue = Queue.enqueue(queue, -99) |> Queue.enqueue(1) |> Queue.enqueue(5)
     assert length(queue.queue) == 3
     assert queue.length == 3
   end
@@ -44,7 +44,7 @@ defmodule Algorithms.DataStructures.QueueTests do
 
   test "Should enqueue 3 elements to a queue and then dequeue one element" do
     queue = %Queue{}
-    queue = Queue.enqueue(queue, -99)|>Queue.enqueue(1)|>Queue.enqueue(5)
+    queue = Queue.enqueue(queue, -99) |> Queue.enqueue(1) |> Queue.enqueue(5)
     {element, queue} = Queue.dequeue(queue)
     assert length(queue.queue) == 2
     assert queue.length == 2
@@ -53,7 +53,7 @@ defmodule Algorithms.DataStructures.QueueTests do
 
   test "Should enqueue 3 elements to a queue and then dequeue all of them in the correct order" do
     queue = %Queue{}
-    queue = Queue.enqueue(queue, -99)|>Queue.enqueue(1)|>Queue.enqueue(5)
+    queue = Queue.enqueue(queue, -99) |> Queue.enqueue(1) |> Queue.enqueue(5)
     {element1, queue} = Queue.dequeue(queue)
     {element2, queue} = Queue.dequeue(queue)
     {element3, queue} = Queue.dequeue(queue)

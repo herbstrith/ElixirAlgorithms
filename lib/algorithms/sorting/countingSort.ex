@@ -11,7 +11,7 @@ defmodule Algorithms.Sorting.CountingSort do
 
   """
 
-   @doc """
+  @doc """
     Returns the sorted given 'list'
 
     ## Examples
@@ -22,44 +22,46 @@ defmodule Algorithms.Sorting.CountingSort do
 
   """
   def sort(list, k) do
-    countList = countNumbers(List.duplicate(0, k + 1), list)
-    countList = countLesserThan(countList, countList, 0, 0)
-    sortedList = orderList(list, countList, list)
-    sortedList
+    count_list = count_numbers(List.duplicate(0, k + 1), list)
+    count_list = count_lesser_than(count_list, count_list, 0, 0)
+    sorted_list = order_list(list, count_list, list)
+    sorted_list
   end
 
-  defp orderList(outputList, countList, _list = [head|tail]) do
-    outputList = List.update_at(outputList, Enum.at(countList, head)-1, fn(_)->head end)
-    orderList(outputList, countList,  tail)
+  defp order_list(output_list, count_list, _list = [head | tail]) do
+    output_list = List.update_at(output_list, Enum.at(count_list, head) - 1, fn _ -> head end)
+    order_list(output_list, count_list, tail)
   end
 
-  defp orderList(outputList, _countList, _list = []) do
-    outputList
+  defp order_list(output_list, _count_list, _list = []) do
+    output_list
   end
 
-  defp countNumbers(outputList, _list = [head|tail]) do
-    result = List.update_at(outputList, head, &(&1 + 1))
-    countNumbers(result, tail)
+  defp count_numbers(output_list, _list = [head | tail]) do
+    result = List.update_at(output_list, head, &(&1 + 1))
+    count_numbers(result, tail)
   end
 
-  defp countNumbers(outputList, _list = []) do
-    outputList
+  defp count_numbers(output_list, _list = []) do
+    output_list
   end
 
-  defp countLesserThan(outputList, _list = [head|tail], count, index) do
+  defp count_lesser_than(output_list, _list = [head | tail], count, index) do
     count = head + count
-    result = List.update_at(outputList, index,
-      fn (x) ->
-        if (x > 0) do
+
+    result =
+      List.update_at(output_list, index, fn x ->
+        if x > 0 do
           count
         else
           x
         end
       end)
-    countLesserThan(result, tail, count, index+1)
+
+      count_lesser_than(result, tail, count, index + 1)
   end
 
-  defp countLesserThan(outputList, _list = [], _count, _index) do
-    outputList
+  defp count_lesser_than(output_list, _list = [], _count, _index) do
+    output_list
   end
 end

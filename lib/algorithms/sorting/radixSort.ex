@@ -10,7 +10,7 @@ defmodule Algorithms.Sorting.RadixSort do
       situational (only integers)
   """
 
-   @doc """
+  @doc """
     Returns the sorted given 'list'
 
     ## Examples
@@ -34,26 +34,25 @@ defmodule Algorithms.Sorting.RadixSort do
   end
 
   defp sort(list, base, max, m) do
-    if (max < m) do
+    if max < m do
       list
     else
       # buckets as equal to the number of digits of our base
-      baseBuckets = List.duplicate([], base)
-      digitsBucket = Enum.reduce(
-        list,
-        baseBuckets,
-        fn (element, tempList) ->
+      base_buckets = List.duplicate([], base)
+
+      digitsBucket =
+        Enum.reduce(list, base_buckets, fn element, temp_list ->
           digit = div(element, m)
           digit = rem(digit, base)
-          List.update_at(tempList, digit, fn(_)-> [element|Enum.at(tempList, digit)] end )
+          List.update_at(temp_list, digit, fn _ -> [element | Enum.at(temp_list, digit)] end)
         end)
-      partiallySortedList = Enum.reduce(
-        (base-1)..0,
-        [],
-        fn(i, tempList) ->
-          Enum.reverse(Enum.at(digitsBucket, i), tempList)
+
+      partially_sorted_list =
+        Enum.reduce((base - 1)..0, [], fn i, temp_list ->
+          Enum.reverse(Enum.at(digitsBucket, i), temp_list)
         end)
-      sort(partiallySortedList, base, max, m*base)
+
+      sort(partially_sorted_list, base, max, m * base)
     end
   end
 end
