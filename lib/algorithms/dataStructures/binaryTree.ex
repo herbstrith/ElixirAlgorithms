@@ -2,188 +2,188 @@ defmodule Algorithms.DataStructures.BinaryTree do
   alias Algorithms.DataStructures.BinaryTree, as: TreeNode
   defstruct key: nil, parent: nil, left: nil, right: nil, data: nil
 
-  def insert(actualTreeNode = %TreeNode{left: nil, right: nil}, newNode = %TreeNode{}) do
-    newNode = %TreeNode{newNode | parent: actualTreeNode.key}
+  def insert(actual_tree_node = %TreeNode{left: nil, right: nil}, new_node = %TreeNode{}) do
+    new_node = %TreeNode{new_node | parent: actual_tree_node.key}
 
-    if actualTreeNode.key < newNode.key do
-      %TreeNode{actualTreeNode | right: newNode}
+    if actual_tree_node.key < new_node.key do
+      %TreeNode{actual_tree_node | right: new_node}
     else
-      %TreeNode{actualTreeNode | left: newNode}
+      %TreeNode{actual_tree_node | left: new_node}
     end
   end
 
-  def insert(actualTreeNode = %TreeNode{right: nil}, newNode = %TreeNode{}) do
-    if actualTreeNode.key < newNode.key do
-      newNode = %TreeNode{newNode | parent: actualTreeNode.key}
-      %TreeNode{actualTreeNode | right: newNode}
+  def insert(actual_tree_node = %TreeNode{right: nil}, new_node = %TreeNode{}) do
+    if actual_tree_node.key < new_node.key do
+      new_node = %TreeNode{new_node | parent: actual_tree_node.key}
+      %TreeNode{actual_tree_node | right: new_node}
     else
-      %TreeNode{actualTreeNode | left: insert(actualTreeNode.left, newNode)}
+      %TreeNode{actual_tree_node | left: insert(actual_tree_node.left, new_node)}
     end
   end
 
-  def insert(actualTreeNode = %TreeNode{left: nil}, newNode = %TreeNode{}) do
-    if actualTreeNode.key < newNode.key do
-      %TreeNode{actualTreeNode | right: insert(actualTreeNode.right, newNode)}
+  def insert(actual_tree_node = %TreeNode{left: nil}, new_node = %TreeNode{}) do
+    if actual_tree_node.key < new_node.key do
+      %TreeNode{actual_tree_node | right: insert(actual_tree_node.right, new_node)}
     else
-      newNode = %TreeNode{newNode | parent: actualTreeNode.key}
-      %TreeNode{actualTreeNode | left: newNode}
+      new_node = %TreeNode{new_node | parent: actual_tree_node.key}
+      %TreeNode{actual_tree_node | left: new_node}
     end
   end
 
-  def insert(actualTreeNode = %TreeNode{}, newNode = %TreeNode{}) do
-    if actualTreeNode.key < newNode.key do
-      %TreeNode{actualTreeNode | right: insert(actualTreeNode.right, newNode)}
+  def insert(actual_tree_node = %TreeNode{}, new_node = %TreeNode{}) do
+    if actual_tree_node.key < new_node.key do
+      %TreeNode{actual_tree_node | right: insert(actual_tree_node.right, new_node)}
     else
-      newNode = %TreeNode{newNode | parent: actualTreeNode}
-      %TreeNode{actualTreeNode | left: insert(actualTreeNode.left, newNode)}
+      new_node = %TreeNode{new_node | parent: actual_tree_node}
+      %TreeNode{actual_tree_node | left: insert(actual_tree_node.left, new_node)}
     end
   end
 
-  def search(_treeNode, _key = nil) do
+  def search(_tree_node, _key = nil) do
     nil
   end
 
-  def search(_treeNode = nil, _key) do
+  def search(_tree_node = nil, _key) do
     nil
   end
 
-  def search(treeNode = %TreeNode{}, key) do
-    if treeNode.key == key do
-      treeNode
+  def search(tree_node = %TreeNode{}, key) do
+    if tree_node.key == key do
+      tree_node
     else
-      if treeNode.key > key do
-        search(treeNode.left, key)
+      if tree_node.key > key do
+        search(tree_node.left, key)
       else
-        search(treeNode.right, key)
+        search(tree_node.right, key)
       end
     end
   end
 
-  def minimum(treeNode = %TreeNode{left: nil}) do
-    treeNode
+  def minimum(tree_node = %TreeNode{left: nil}) do
+    tree_node
   end
 
-  def minimum(treeNode = %TreeNode{}) do
-    minimum(treeNode.left)
+  def minimum(tree_node = %TreeNode{}) do
+    minimum(tree_node.left)
   end
 
-  def maximum(treeNode = %TreeNode{right: nil}) do
-    treeNode
+  def maximum(tree_node = %TreeNode{right: nil}) do
+    tree_node
   end
 
-  def maximum(treeNode = %TreeNode{}) do
-    maximum(treeNode.right)
+  def maximum(tree_node = %TreeNode{}) do
+    maximum(tree_node.right)
   end
 
-  def successor(binaryTree, treeNode = %TreeNode{}) do
-    if treeNode.right != nil do
-      minimum(treeNode.right)
+  def successor(binary_tree, tree_node = %TreeNode{}) do
+    if tree_node.right != nil do
+      minimum(tree_node.right)
     else
-      parent = search(binaryTree, treeNode.parent)
-      successor(binaryTree, parent, treeNode)
+      parent = search(binary_tree, tree_node.parent)
+      successor(binary_tree, parent, tree_node)
     end
   end
 
-  defp successor(_binaryTree, treeNode = %TreeNode{parent: nil}, _searchNode) do
-    treeNode
+  defp successor(_binary_tree, tree_node = %TreeNode{parent: nil}, _searchNode) do
+    tree_node
   end
 
-  defp successor(binaryTree, treeNode = %TreeNode{}, searchNode = %TreeNode{}) do
-    if treeNode.left.key == searchNode.key do
-      treeNode
+  defp successor(binary_tree, tree_node = %TreeNode{}, searchNode = %TreeNode{}) do
+    if tree_node.left.key == searchNode.key do
+      tree_node
     else
-      parent = search(binaryTree, treeNode.parent)
+      parent = search(binary_tree, tree_node.parent)
       successor(parent, searchNode)
     end
   end
 
-  def delete(actualNode = nil, _deleteNode = %TreeNode{}) do
-    actualNode
+  def delete(actual_node = nil, _delete_node = %TreeNode{}) do
+    actual_node
   end
 
-  def delete(actualNode = %TreeNode{}, deleteNode = %TreeNode{}) do
+  def delete(actual_node = %TreeNode{}, delete_node = %TreeNode{}) do
     cond do
       # in case we are deleting the root
-      deleteNode.key == actualNode.key ->
-        transplant(nil, deleteNode)
+      delete_node.key == actual_node.key ->
+        transplant(nil, delete_node)
 
-      actualNode.right != nil && deleteNode.key == actualNode.right.key ->
-        transplantRight(actualNode, deleteNode)
+      actual_node.right != nil && delete_node.key == actual_node.right.key ->
+        transplant_right(actual_node, delete_node)
 
-      actualNode.left != nil && deleteNode.key == actualNode.left.key ->
-        transplantLeft(actualNode, deleteNode)
+      actual_node.left != nil && delete_node.key == actual_node.left.key ->
+        transplant_left(actual_node, delete_node)
 
-      deleteNode.key > actualNode.key ->
-        %TreeNode{actualNode | right: delete(actualNode.right, deleteNode)}
+      delete_node.key > actual_node.key ->
+        %TreeNode{actual_node | right: delete(actual_node.right, delete_node)}
 
-      deleteNode.key < actualNode.key ->
-        %TreeNode{actualNode | left: delete(actualNode.left, deleteNode)}
+      delete_node.key < actual_node.key ->
+        %TreeNode{actual_node | left: delete(actual_node.left, delete_node)}
     end
   end
 
-  defp transplantRight(parentNode, deleteNode) do
+  defp transplant_right(parent_node, delete_node) do
     cond do
-      deleteNode.right == nil ->
-        %TreeNode{parentNode | right: deleteNode.left}
+      delete_node.right == nil ->
+        %TreeNode{parent_node | right: delete_node.left}
 
-      deleteNode.left == nil ->
-        %TreeNode{parentNode | right: deleteNode.right}
+      delete_node.left == nil ->
+        %TreeNode{parent_node | right: delete_node.right}
 
       true ->
-        transplant(parentNode, deleteNode)
+        transplant(parent_node, delete_node)
     end
   end
 
-  defp transplantLeft(parentNode, deleteNode) do
+  defp transplant_left(parent_node, delete_node) do
     cond do
-      deleteNode.right == nil ->
-        %TreeNode{parentNode | left: deleteNode.left}
+      delete_node.right == nil ->
+        %TreeNode{parent_node | left: delete_node.left}
 
-      deleteNode.left == nil ->
-        %TreeNode{parentNode | left: deleteNode.right}
+      delete_node.left == nil ->
+        %TreeNode{parent_node | left: delete_node.right}
 
       true ->
-        transplant(parentNode, deleteNode)
+        transplant(parent_node, delete_node)
     end
   end
 
   # transplanting the root
-  defp transplant(_parentNode = nil, deleteNode) do
-    minimumNode = minimum(deleteNode.right)
-    treeWithoutMinimum = removeLeaf(deleteNode.right, minimumNode)
-    %TreeNode{minimumNode | parent: nil, right: treeWithoutMinimum, left: deleteNode.left}
+  defp transplant(_parent_node = nil, delete_node) do
+    minimumNode = minimum(delete_node.right)
+    treeWithoutMinimum = remove_leaf(delete_node.right, minimumNode)
+    %TreeNode{minimumNode | parent: nil, right: treeWithoutMinimum, left: delete_node.left}
   end
 
-  defp transplant(parentNode, deleteNode) do
-    minimumNode = minimum(deleteNode.right)
-    treeWithoutMinimum = removeLeaf(deleteNode.right, minimumNode)
+  defp transplant(parent_node, delete_node) do
+    minimumNode = minimum(delete_node.right)
+    treeWithoutMinimum = remove_leaf(delete_node.right, minimumNode)
 
     transplantTree = %TreeNode{
       minimumNode
-      | parent: parentNode.key,
+      | parent: parent_node.key,
         right: treeWithoutMinimum,
-        left: deleteNode.left
+        left: delete_node.left
     }
 
-    %TreeNode{parentNode | left: transplantTree}
+    %TreeNode{parent_node | left: transplantTree}
   end
 
-  defp removeLeaf(actualNode = %TreeNode{}, leafNode = %TreeNode{}) do
+  defp remove_leaf(actual_node = %TreeNode{}, leaf_node = %TreeNode{}) do
     cond do
-      actualNode.key == leafNode.key ->
+      actual_node.key == leaf_node.key ->
         nil
 
-      actualNode.left.key == leafNode.key ->
-        %TreeNode{actualNode | left: nil}
+      actual_node.left.key == leaf_node.key ->
+        %TreeNode{actual_node | left: nil}
 
-      actualNode.right.key == leafNode.key ->
-        %TreeNode{actualNode | right: nil}
+      actual_node.right.key == leaf_node.key ->
+        %TreeNode{actual_node | right: nil}
 
-      actualNode.key < leafNode.key ->
-        %TreeNode{actualNode | right: removeLeaf(actualNode.right, leafNode)}
+      actual_node.key < leaf_node.key ->
+        %TreeNode{actual_node | right: remove_leaf(actual_node.right, leaf_node)}
 
-      actualNode.key > leafNode.key ->
-        %TreeNode{actualNode | left: removeLeaf(actualNode.left, leafNode)}
+      actual_node.key > leaf_node.key ->
+        %TreeNode{actual_node | left: remove_leaf(actual_node.left, leaf_node)}
     end
   end
 end
