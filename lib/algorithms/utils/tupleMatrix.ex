@@ -9,4 +9,11 @@ defmodule Algorithms.Util.TupleMatrix do
     line_i = elem(tuple_matrix, pos_i)
     elem(line_i, pos_j)
   end
+
+  def print(tuple_matrix) do
+    Enum.each(
+      Tuple.to_list(tuple_matrix),
+      fn (line) -> IO.puts(inspect(line)) end
+    )
+  end
 end
